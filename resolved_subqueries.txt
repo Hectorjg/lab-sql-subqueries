@@ -68,8 +68,9 @@ select inventory_id from sakila.rental
 where customer_id = (
 select customer_id from sakila.payment
 group by 1
-order by count(rental_id) desc
-limit 1)));
+order by sum(amount) desc
+limit 1))); 
+
 
 #Query 8.- Get the client_id and the total_amount_spent of those clients who spent more than the average of the total_amount spent by each client
 select customer_id, sum(amount) as total_amount_spent from sakila.payment
